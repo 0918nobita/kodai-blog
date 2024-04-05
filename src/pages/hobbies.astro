@@ -1,8 +1,11 @@
 ---
+import Header from '../components/Header.svelte';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="趣味 | Kodai のウェブサイト">
+  <Header slot="header" />
+
   <h2>趣味</h2>
   <p>準備中…</p>
   <ul>
@@ -35,6 +38,7 @@ import Layout from '../layouts/Layout.astro';
     <li>
       中国語の学習
       <ul>
+        <li>HSK２級取得済み</li>
         <li>HSK４級取得に向けて独学で勉強中</li>
       </ul>
     </li>

@@ -1,9 +1,12 @@
 ---
+import Header from '../components/Header.svelte';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Kodai のウェブサイト">
-  <h2>Kodai のウェブサイト</h2>
+  <Header slot="header" />
+
+  <h2>概要</h2>
 
   <p>本名：松本 幸大 (まつもと こうだい)</p>
 
@@ -16,5 +19,33 @@ import Layout from '../layouts/Layout.astro';
 
   <p>計算機とプログラミング言語が好きです！</p>
 
-  <p>このウェブサイトは Astro で開発されています。</p>
+  <p>このウェブサイトは Astro, Svelte で開発されています。</p>
+
+  <h2>連絡先</h2>
+
+  <ul>
+    <li>
+      <a href="mailto:nobita.0918@gmail.com">Gmail</a>
+    </li>
+    <li>
+      X (Twitter)：
+      <a
+        href="https://twitter.com/0918nobita"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        @0918nobita
+      </a>
+    </li>
+    <li>
+      Bluesky：
+      <a
+        href="https://bsky.app/profile/kodai.engineer"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        @kodai.engineer
+      </a>
+    </li>
+  </ul>
 </Layout>

@@ -1,0 +1,16 @@
+:root {
+  --site-title-text: #68394c;
+  --header-text: #93556c;
+  --heading-text: #845080;
+  --main-text: #5b5b5b;
+  --main-bg: #fdfaf4;
+}
+
+body {
+  background-color: var(--main-bg);
+  color: var(--main-text);
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+  color: var(--heading-text);
+}

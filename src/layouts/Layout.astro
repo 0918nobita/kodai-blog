@@ -1,13 +1,11 @@
 ---
-import '../global.css';
-import styles from './Layout.module.css';
+import './Layout.module.css';
 
 import { ViewTransitions } from 'astro:transitions';
 
-import Sidebar from '../components/Sidebar.astro';
-import SpHeader from '../components/SpHeader.astro';
-
 const { title } = Astro.props['frontmatter'] || Astro.props;
+
+const description = 'Kodai の経歴・連絡先・制作物等を掲載しています。';
 ---
 
 <!doctype html>
@@ -17,11 +15,9 @@ const { title } = Astro.props['frontmatter'] || Astro.props;
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="og:title" content="Kodai のウェブサイト" />
-    <meta
-      name="og:description"
-      content="Kodai の経歴・連作先・制作物等を掲載しています"
-    />
+    <meta name="description" content={description} />
+    <meta name="og:title" content={title} />
+    <meta name="og:description" content={description} />
     <meta name="og:locale" content="ja_JP" />
     <meta name="og:url" content="https://kodai.engineer" />
     <meta name="og:image" content="https://kodai.engineer/icon.jpg" />
@@ -33,80 +29,9 @@ const { title } = Astro.props['frontmatter'] || Astro.props;
     <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png" />
   </head>
   <body>
-    <script is:inline define:vars={{ themeToggleClass: styles['themeToggle'] }}>
-      function osThemeSetting() {
-        return window.matchMedia('(prefers-color-scheme: dark)').matches
-          ? 'dark'
-          : 'light';
-      }
-
-      /** @param {Document} doc */
-      function applyTheme(doc) {
-        const theme = (() => {
-          if (typeof localStorage === undefined) return osThemeSetting();
-
-          const storedTheme = localStorage.getItem('theme');
-
-          switch (true) {
-            case storedTheme === 'dark':
-              return 'dark';
-            case storedTheme === 'light':
-              return 'light';
-            case storedTheme !== null:
-              localStorage.removeItem('theme');
-            default:
-              return osThemeSetting();
-          }
-        })();
-
-        doc.documentElement.dataset['theme'] = theme;
-      }
-
-      /**
-       * @param {Document} doc
-       * @param {'match-system' | 'dark' | 'light'} theme
-       */
-      function changeTheme(doc, theme) {
-        if (typeof localStorage === undefined) return;
-
-        switch (theme) {
-          case 'dark':
-            localStorage.setItem('theme', 'dark');
-            break;
-
-          case 'light':
-            localStorage.setItem('theme', 'light');
-            break;
-
-          default:
-            localStorage.removeItem('theme');
-        }
-
-        applyTheme(doc);
-      }
-
-      applyTheme(document);
-
-      window.changeTheme = changeTheme;
-
-      document.addEventListener('astro:before-swap', (ev) => {
-        applyTheme(ev.newDocument);
-      });
-    </script>
-
-    <main class:list={styles['main']}>
-      <Sidebar
-        class:list={styles['sidebar']}
-        themeToggleClass={styles['themeToggle']}
-      />
-
-      <SpHeader class:list={[styles['spHeader']]} />
-
-      <div class:list={[styles['articleWrapper']]}>
-        <article class:list={[styles['article']]}>
-          <slot />
-        </article>
-      </div>
+    <slot name="header" />
+    <main>
+      <slot />
     </main>
   </body>
 </html>
