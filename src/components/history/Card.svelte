@@ -4,11 +4,14 @@
 
   export let hasDialog = false;
 
+  let dialog: HTMLDialogElement;
+
   function onClick() {
     if (!hasDialog) {
       return;
     }
-    // console.log('clicked');
+
+    dialog.showModal();
   }
 </script>
 
@@ -17,6 +20,10 @@
     <div class="title"><h3>{title}</h3></div>
     <p>{desc}</p>
   </button>
+
+  <dialog bind:this={dialog}>
+    <slot />
+  </dialog>
 {:else}
   <article>
     <div class="title"><h3>{title}</h3></div>
@@ -69,5 +76,14 @@
   p {
     margin: 0;
     padding: 0.5rem 0.7rem 0.5rem 0.7rem;
+  }
+
+  dialog {
+    padding: 1.5rem 2rem;
+    border: none;
+    border-radius: 7px;
+    box-shadow: 0 0 1em black;
+    background-color: var(--main-bg);
+    color: var(--main-text);
   }
 </style>
