@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 
+import * as styles from './Sidebar.css';
+
 import ThemeToggle from './ThemeToggle.svelte';
 
 interface Props {
@@ -10,7 +12,7 @@ interface Props {
 const { className } = Astro.props;
 ---
 
-<nav class:list={[className]}>
+<nav class:list={[className, styles.nav]}>
   <Image
     class:list={['icon']}
     src="/icon.jpg"
@@ -35,15 +37,6 @@ const { className } = Astro.props;
 </nav>
 
 <style>
-  nav {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--sidebar-bg);
-    color: var(--sidebar-text);
-    width: 18rem;
-    height: 100vh;
-  }
-
   .icon {
     max-width: 100%;
     height: auto;
